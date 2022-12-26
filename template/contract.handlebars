@@ -1,5 +1,5 @@
 import ContractAbstract from "hipo-contract/dist/contract/ContractAbstract.js";
-import {{contractName}}Abi from 'src/contract/abi/{{contractName}}.json'
+import {{contractName}}Abi from '../abis/{{contractName}}.json'
 
 type BigNumber = Number
 
@@ -24,5 +24,4 @@ export class {{contractName}}Contract extends ContractAbstract {
 		{{/ifEquals}}
 		{{/each}}
 }
-
 
