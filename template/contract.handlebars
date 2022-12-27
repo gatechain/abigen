@@ -1,7 +1,12 @@
 import ContractAbstract from "hipo-contract/dist/contract/ContractAbstract.js";
 import {{contractName}}Abi from '../abis/{{contractName}}.json'
 
-type BigNumber = Number
+type BigNumber = any 
+interface IOption {
+	gasLimit?: Number
+	from?: string 
+	value?: string 
+} 
 
 export class {{contractName}}Contract extends ContractAbstract {
     public static contractName = '{{contractName}}Contract';
@@ -12,13 +17,18 @@ export class {{contractName}}Contract extends ContractAbstract {
 		{{#each methods}}
 		{{#ifEquals languageSpecificName "name"}}
 		{{else}}
-		public {{languageSpecificName}}({{> typed_params inputs=this.inputs}}
 		{{#ifEquals this.stateMutability "view" }}
-			const provider = this.getContractProvider()
-			return provider.{{languageSpecificName}}({{#each inputs}}{{name}}{{#unless @last}},{{/unless}}{{/each}})
+	  public {{languageSpecificName}}({{> typed_params inputs=this.inputs}}
+			const provider = this.getContractProvider(this.address)
+			return provider.{{languageSpecificName}}({{> params inputs=this.inputs}}
 		{{else}}
-			const singer = this.getContractSigner()
-			return singer.{{languageSpecificName}}({{#each inputs}}{{name}}{{#unless @last}},{{/unless}}{{/each}})
+	  public async {{languageSpecificName}}({{> typed_params_signer inputs=this.inputs}}
+			const signer = this.getContractSigner(this.address)
+			const gasLimit = await signer.estimateGas.{{languageSpecificName}}({{> params inputs=this.inputs}}
+			const options = Object.assign({
+				gasLimit
+			}, opt)
+			return signer.{{languageSpecificName}}({{> params_signer inputs=this.inputs}}
 		{{/ifEquals}}
 		};
 		{{/ifEquals}}
