@@ -24,11 +24,12 @@ export class {{contractName}}Contract extends ContractAbstract {
 		{{else}}
 	  public async {{languageSpecificName}}({{> typed_params_signer inputs=this.inputs}}
 			const signer = this.getContractSigner(this.address)
-			const gasLimit = await signer.estimateGas.{{languageSpecificName}}({{#each inputs}}{{name}},{{/each}}opt)
+			const _opt = opt || {}
+			const gasLimit = await signer.estimateGas.{{languageSpecificName}}({{#each inputs}}{{name}},{{/each}}_opt)
 
 			const options = Object.assign({
 				gasLimit
-			}, opt)
+			}, _opt)
 			return signer.{{languageSpecificName}}({{> params_signer inputs=this.inputs}}
 		{{/ifEquals}}
 		};
