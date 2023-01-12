@@ -1,12 +1,6 @@
-import ContractAbstract from "web3-contract/dist/contract/ContractAbstract.js";
+import ContractAbstract, {BigNumber, IOption} from "web3-contract/dist/contract/ContractAbstract.js";
 import {{contractName}}Abi from '../abis/{{contractName}}.json'
 
-type BigNumber = any 
-interface IOption {
-	gasLimit?: Number
-	from?: string 
-	value?: string 
-} 
 
 export class {{contractName}}Contract extends ContractAbstract {
     public static contractName = '{{contractName}}Contract';
@@ -18,13 +12,15 @@ export class {{contractName}}Contract extends ContractAbstract {
 		{{#ifEquals languageSpecificName "name"}}
 		{{else}}
 		{{#ifEquals this.stateMutability "view" }}
-	  public {{languageSpecificName}}({{> typed_params inputs=this.inputs}}
-			const provider = this.getContractProvider(this.address)
+	  public {{languageSpecificName}}({{> typed_params_signer inputs=this.inputs}}
+			const [address] = this.parseOption(opt)
+			const provider = this.getContractProvider(address)
 			return provider.{{languageSpecificName}}({{> params inputs=this.inputs}}
 		{{else}}
 	  public async {{languageSpecificName}}({{> typed_params_signer inputs=this.inputs}}
-			const signer = this.getContractSigner(this.address)
-			const _opt = opt || {}
+			const [address, rest] = this.parseOption(opt)
+			const signer = this.getContractSigner(address)
+			const _opt = rest
 			const gasLimit = await signer.estimateGas.{{languageSpecificName}}({{#each inputs}}{{name}},{{/each}}_opt)
 
 			const options = Object.assign({
