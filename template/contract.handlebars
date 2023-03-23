@@ -19,14 +19,14 @@ export class {{contractName}}Contract extends ContractAbstract {
 		{{else}}
 	  public async {{languageSpecificName}}({{> typed_params_signer inputs=this.inputs}}
 			const [address, rest] = this.parseOption(opt)
-			const signer = this.getContractSigner(address)
+			const __signer = this.getContractSigner(address)
 			const _opt = rest
-			const gasLimit = await signer.estimateGas.{{languageSpecificName}}({{#each inputs}}{{name}},{{/each}}_opt)
+			const gasLimit = await __signer.estimateGas.{{languageSpecificName}}({{#each inputs}}{{name}},{{/each}}_opt)
 
 			const options = Object.assign({
 				gasLimit
 			}, _opt)
-			return signer.{{languageSpecificName}}({{> params_signer inputs=this.inputs}}
+			return __signer.{{languageSpecificName}}({{> params_signer inputs=this.inputs}}
 		{{/ifEquals}}
 		};
 		{{/ifEquals}}
