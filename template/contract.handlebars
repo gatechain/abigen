@@ -21,6 +21,7 @@ export class {{contractName}}Contract extends ContractAbstract {
 			let  gasLimit: any = null
 			try {
 				gasLimit = await __signer.estimateGas.{{languageSpecificName}}({{#each inputs}}{{name}},{{/each}}_opt)
+        gasLimit = gasLimit.mul(120).div(100)
 			} catch (error) {
 			console.log(error)
 			}
