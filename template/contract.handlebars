@@ -1,10 +1,7 @@
 import ContractAbstract, {BigNumber, IOption} from "web3-contract/dist/contract/ContractAbstract.js";
-import {{contractName}}Abi from '../abis/{{contractName}}.json'
-
 
 export class {{contractName}}Contract extends ContractAbstract {
     public static contractName = '{{contractName}}Contract';
-		Abi = {{contractName}}Abi 
 		constructor(props: any) {
 			super(props)
 		}
@@ -36,5 +33,6 @@ export class {{contractName}}Contract extends ContractAbstract {
 		};
 		{{/ifEquals}}
 		{{/each}}
+		Abi = {{{ABIString}}} 
 }
 

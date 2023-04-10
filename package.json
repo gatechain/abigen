@@ -1,6 +1,6 @@
 {
   "name": "abigen",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "> TODO: 生成typescript abi Calss",
   "author": "Thone Liu <thorne_lew@126.com>",
   "homepage": "https://github.com/gatechain/web3-sdk#readme",
