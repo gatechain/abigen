@@ -1,9 +1,8 @@
 {
   "name": "abigen",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "> TODO: 生成typescript abi Class",
-  "author": "Thone Liu <thorne_lew@126.com>",
-  "homepage": "https://github.com/gatechain/web3-sdk#readme",
+  "author": "Thone",
   "license": "ISC",
   "main": "lib/abigen.js",
   "bin": {
