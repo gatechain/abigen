@@ -1,7 +1,7 @@
 {
   "name": "abigen",
-  "version": "1.0.5",
-  "description": "> TODO: 生成typescript abi Calss",
+  "version": "1.0.6",
+  "description": "> TODO: 生成typescript abi Class",
   "author": "Thone Liu <thorne_lew@126.com>",
   "homepage": "https://github.com/gatechain/web3-sdk#readme",
   "license": "ISC",
@@ -17,7 +17,7 @@
     "lib"
   ],
   "dependencies": {
-    "@0x/abi-gen": "^5.8.1"
+    "@0x/abi-gen": "https://github.com/gatechain/0xproject-abigen.git#5.8.6"
   },
   "publishConfig": {
     "registry": "https://registry.npmmirror.com/"

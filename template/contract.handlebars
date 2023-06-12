@@ -1,13 +1,13 @@
 import ContractAbstract, {BigNumber, IOption} from "web3-contract/dist/contract/ContractAbstract.js";
+import ABI from "{{abibasepath}}/{{contractName}}.json"
 
 export class {{contractName}}Contract extends ContractAbstract {
     public static contractName = '{{contractName}}Contract';
+		Abi = ABI 
 		constructor(props: any) {
 			super(props)
 		}
 		{{#each methods}}
-		{{#ifEquals languageSpecificName "name"}}
-		{{else}}
 		{{#ifEquals this.stateMutability "view" }}
 	  public {{languageSpecificName}}({{> typed_params_signer inputs=this.inputs}}
 			const [address] = this.parseOption(opt)
@@ -32,8 +32,6 @@ export class {{contractName}}Contract extends ContractAbstract {
 			return __signer.{{languageSpecificName}}({{> params_signer inputs=this.inputs}}
 		{{/ifEquals}}
 		};
-		{{/ifEquals}}
 		{{/each}}
-		Abi = {{{ABIString}}} 
 }
 

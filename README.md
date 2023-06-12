@@ -5,5 +5,5 @@
 ## Usage
 
 ```bash
-npx abigen abis="./abis/**/*.json" out="./output"
+npx abigen abis="./abis/**/*.json" out="./output" abiBasePath="src/abis"
 ```
